@@ -1,0 +1,23 @@
+services:
+
+  postgres:
+    image: postgres:15
+    container_name: postgres_pupuseria
+
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: pupuseria_guadalupe
+
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: ./backend
+    container_name: backend_pupuseria
+
+    ports:
+      - "3000:3000"
+
+    depends_on:
+      - postgres
